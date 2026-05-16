@@ -39,7 +39,7 @@ async fn minecraft(
 Thank you for showing interest in our Minecraft server!
 To Join, download [Prism Launcher](https://prismlauncher.org/) and our [modpack](https://docspace-9td180.onlyoffice.com/s/jCYdr8DxjpMXz2N).
 The server address is `foss.snails.cfd`.
-See a live, 3D map of the world at [http://snails.cfd:8200/#world].
+See a live, 3D map of the world at http://snails.cfd:8200/#world.
 Your username `{}` should have been added to the whitelist. Please let us know if you have any issues.", username);
                 println!("{f}");
                 ctx.say(response).await?;
