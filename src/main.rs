@@ -23,7 +23,7 @@ async fn minecraft(
     // Minecraft usernames should only contain "a-z", "0-9", and "_" and are, at most, 16 characters
     // Check to make sure before sending the command through RCON to prevent against injection attacks
     if !username.chars().all(|c| c.is_ascii_alphanumeric() || c == '_') || username.len() > 16 {
-        ctx.say("Your username seems to contain invalid characters").await?;
+        ctx.say("Your username seems to contain invalid characters or is too long").await?;
         return Ok(());
     }
 
@@ -36,9 +36,10 @@ async fn minecraft(
         Ok(f) => {
             if f.contains("Added ") {
                 let response = format!("\
-Thank you for showing interest in our Minecraft server
-To Join, download [Prism Launcher](https://prismlauncher.org/) and our [modpack](https://docspace-9td180.onlyoffice.com/s/jCYdr8DxjpMXz2N)
-The server address is `foss.snails.cfd`
+Thank you for showing interest in our Minecraft server!
+To Join, download [Prism Launcher](https://prismlauncher.org/) and our [modpack](https://docspace-9td180.onlyoffice.com/s/jCYdr8DxjpMXz2N).
+The server address is `foss.snails.cfd`.
+See a live, 3D map of the world at [http://snails.cfd:8200/#world].
 Your username `{}` should have been added to the whitelist. Please let us know if you have any issues.", username);
                 println!("{f}");
                 ctx.say(response).await?;
@@ -49,7 +50,7 @@ Your username `{}` should have been added to the whitelist. Please let us know i
             }
         }
         Err(_) => {
-            ctx.say("There was a problem sending the `whitelist` command to the Minecraft server, the server might be facing down time.").await?;
+            ctx.say("There was a problem sending the `whitelist` command to the Minecraft server, the server might be offline.").await?;
         }
     }
     Ok(())
